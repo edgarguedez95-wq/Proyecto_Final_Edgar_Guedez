@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# Proyecto Final Integrador: Framework de Automatización QA (UI + API)
+Proyecto Final Integrador: Framework de Automatización QA (UI + API)
 
 Este proyecto es un framework de automatización de pruebas completo desarrollado en Python, que integra pruebas de Interfaz de Usuario (UI) sobre SauceDemo y pruebas de API sobre JSONPlaceholder, demostrando dominio de Pytest, Page Object Model (POM) y estrategias de Integración Continua (CI/CD).
 
@@ -73,8 +72,8 @@ El framework está configurado para generar evidencia y facilitar la depuración
 
 ## 🔄 Integración Continua (CI/CD)
 
-El pipeline está configurado en GitHub Actions (`.github/workflows/ci.yml`). El flujo se dispara automáticamente en cada **push** o **Pull Request** a las ramas `main` o `develop`, ejecutando la suite completa y generando los reportes como artefactos descargables.
-=======
+# El pipeline está configurado en GitHub Actions (`.github/workflows/ci.yml`). El flujo se dispara automáticamente en cada **push** o **Pull Request** a las ramas `main` o `develop`, ejecutando la suite completa y generando los reportes como artefactos descargables.
+
 # Proyecto Final QA Automation - Edgar Guedez
 
 Este repositorio contiene mi proyecto final de automatización de pruebas de calidad (QA). El objetivo es demostrar la capacidad para implementar pruebas End-to-End (E2E) para la interfaz de usuario web y pruebas de integración para servicios API.
@@ -90,4 +89,3 @@ El proyecto está desarrollado utilizando el patrón de diseño **Page Object Mo
 - **Reportes:** `pytest-html`
 
 ## Estructura del Proyecto
->>>>>>> b441d3ee5de032a142c0872ea3cfca91f1bc5660
