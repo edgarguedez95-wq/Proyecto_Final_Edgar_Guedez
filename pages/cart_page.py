@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # pages/cart_page.py
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -29,3 +30,27 @@ class CartPage:
         self.driver.find_element(*self._CHECKOUT_BUTTON).click()
         # Aquí retornarías CheckoutPage si la implementas
         return self
+=======
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+class CartPage:
+
+    # Selectores
+    _CART_ITEMS = (By.CLASS_NAME, "cart_item")
+    _CART_ITEM_NAME = (By.CLASS_NAME,"inventory_item_name")
+
+    def __init__(self,driver):
+        self.driver = driver 
+        self.wait = WebDriverWait(driver,10)
+
+    def obtener_productos_carrito(self):
+        productos = self.wait.until(EC.visibility_of_all_elements_located(self._CART_ITEMS))
+        return productos
+    
+    def obtener_nombre_producto_carrito(self):
+        nombre_producto = self.wait.until(EC.visibility_of_element_located(self._CART_ITEM_NAME))
+        return nombre_producto.text
+>>>>>>> b441d3ee5de032a142c0872ea3cfca91f1bc5660

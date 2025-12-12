@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import pytest
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
@@ -56,3 +57,34 @@ def test_agregar_producto_a_carrito(usuario_logueado: InventoryPage):
     assert contador == 1, f"El contador del carrito debería ser 1, es {contador}"
     
     logger.info("VERIFICACION EXITOSA: Contador de carrito OK (valor 1).")
+=======
+from selenium.webdriver.common.by import By
+from selenium import webdriver
+import pytest
+
+from pages.inventory_page import InventoryPage
+
+@pytest.mark.parametrize("usuario,password",[("standard_user","secret_sauce")])
+def test_inventory(login_in_driver,usuario,password):
+    try:
+        driver = login_in_driver
+        inventory_page = InventoryPage(driver)
+
+        # Verificar que hay productos
+        assert len(inventory_page.obtener_todos_los_productos()) > 0, "El inventario esta vacio"
+
+        # Verificar vacio el carrito al inicio
+        assert inventory_page.obtener_conteo_carrito() == 0
+
+        # Agregar el primer producto
+        inventory_page.agregar_primer_producto()
+
+        # Verificar el contador del carrito
+        assert inventory_page.obtener_conteo_carrito() == 1
+       
+    except Exception as e:
+        print(f"Error en test_inventory: {e}")
+        raise
+    finally:
+        driver.quit()
+>>>>>>> b441d3ee5de032a142c0872ea3cfca91f1bc5660

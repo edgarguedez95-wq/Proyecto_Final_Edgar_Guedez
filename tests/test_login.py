@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import pytest
 from pages.login_page import LoginPage
 from utils.datos import CASOS_LOGIN
@@ -36,3 +37,30 @@ def test_login_ddt(driver, usuario, clave, debe_funcionar):
         assert login.hay_error()
 
     logger.info('Test finalizado para el usuario: %s', usuario)
+=======
+from selenium.webdriver.common.by import By
+from selenium import webdriver
+import pytest 
+
+from utils.datos import leer_csv_login
+from pages.login_page import LoginPage
+
+from utils.logger import logger
+
+
+@pytest.mark.parametrize("usuario,password,debe_funcionar",leer_csv_login("datos/data_login.csv"))
+def test_login_validation(login_in_driver,usuario,password,debe_funcionar):
+    logger.info("Completando con los datos de usuario")
+    driver = login_in_driver
+
+    if debe_funcionar == True:
+        logger.info("verficando redireccionamiento dentro de la pagina")
+        assert "/inventory.html" in driver.current_url, "No se redirgio al inventario"
+        logger.info("test de login completado")
+    elif debe_funcionar == False:
+        mensaje_error = LoginPage(driver).obtener_error()
+        assert "Epic sadface" in mensaje_error, "el mensaje de error no se esta mostrando"
+
+
+
+>>>>>>> b441d3ee5de032a142c0872ea3cfca91f1bc5660

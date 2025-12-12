@@ -1,0 +1,32 @@
+19:58:50 INFO TalentoTech Completando con los datos de usuario
+19:58:50 INFO TalentoTech verficando redireccionamiento dentro de la pagina
+19:58:50 INFO TalentoTech test de login completado
+19:58:56 INFO TalentoTech Completando con los datos de usuario
+2025-11-26 20:01:44 INFO TalentoTech: Completando con los datos de usuario
+2025-11-26 20:01:44 INFO TalentoTech: verficando redireccionamiento dentro de la pagina
+2025-11-26 20:01:44 INFO TalentoTech: test de login completado
+2025-11-26 20:01:50 INFO TalentoTech: Completando con los datos de usuario
+2025-11-26 20:39:10 INFO TalentoTech: Relizando la solitud GET a https://reqres.in/api/users 
+2025-11-26 20:39:10 INFO TalentoTech: Status code: 200
+2025-11-26 20:39:10 INFO TalentoTech: Validando el id dentro del usuario
+2025-11-30 10:06:23 INFO TalentoTech: Completando con los datos de usuario
+2025-11-30 10:06:23 INFO TalentoTech: verficando redireccionamiento dentro de la pagina
+2025-11-30 10:06:23 INFO TalentoTech: test de login completado
+2025-11-30 10:06:27 INFO TalentoTech: Completando con los datos de usuario
+2025-11-30 10:08:30 INFO TalentoTech: Relizando la solitud GET a https://reqres.in/api/users 
+2025-11-30 10:08:30 INFO TalentoTech: Status code: 200
+2025-11-30 10:08:30 INFO TalentoTech: Validando el id dentro del usuario
+2025-11-30 10:13:43 INFO TalentoTech: Completando con los datos de usuario
+2025-11-30 10:13:43 INFO TalentoTech: verficando redireccionamiento dentro de la pagina
+2025-11-30 10:13:43 INFO TalentoTech: test de login completado
+2025-11-30 10:13:48 INFO TalentoTech: Completando con los datos de usuario
+2025-11-30 10:15:50 INFO TalentoTech: Relizando la solitud GET a https://reqres.in/api/users 
+2025-11-30 10:15:51 INFO TalentoTech: Status code: 200
+2025-11-30 10:15:51 INFO TalentoTech: Validando el id dentro del usuario
+2025-11-30 10:59:41 INFO TalentoTech: Completando con los datos de usuario
+2025-11-30 10:59:41 INFO TalentoTech: verficando redireccionamiento dentro de la pagina
+2025-11-30 10:59:41 INFO TalentoTech: test de login completado
+2025-11-30 10:59:46 INFO TalentoTech: Completando con los datos de usuario
+2025-11-30 11:01:49 INFO TalentoTech: Relizando la solitud GET a https://reqres.in/api/users 
+2025-11-30 11:01:49 INFO TalentoTech: Status code: 200
+2025-11-30 11:01:49 INFO TalentoTech: Validando el id dentro del usuario
