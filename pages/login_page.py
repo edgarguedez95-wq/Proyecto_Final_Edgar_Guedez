@@ -1,24 +1,23 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-<<<<<<< HEAD
-import time # Solo para pausas de debugging si es necesario
+import time 
+
 
 class LoginPage:
+
     # 1. IDENTIDAD DE LA PÁGINA
-    URL = "https://www.saucedemo.com/" # Centraliza la URL 
+    URL = "https://www.saucedemo.com/" 
 
     # 2. LOCATORS (Privados y Centralizados)
-    # Si los selectores cambian en SauceDemo, solo editas aquí 
     _USER_INPUT   = (By.ID,   "user-name")
     _PASS_INPUT   = (By.ID,   "password")
     _LOGIN_BUTTON = (By.ID,   "login-button")
-    _ERROR_MESSAGE = (By.CSS_SELECTOR, "[data-test='error']") # Selector para el mensaje de error 
+    _ERROR_MESSAGE = (By.CSS_SELECTOR, "[data-test='error']") 
 
     def __init__(self, driver):
-        """Constructor que recibe la instancia del WebDriver del conftest.py ."""
+        """Constructor que recibe la instancia del WebDriver."""
         self.driver = driver
-        # Inicializa una espera explícita para usar en pasos críticos 
         self.wait = WebDriverWait(driver, 10)
 
     def abrir(self):
@@ -27,7 +26,7 @@ class LoginPage:
         return self
 
     def completar_usuario(self, usuario: str):
-        """Escribe el nombre de usuario, esperando que el campo sea visible."""
+        """Escribe el nombre de usuario."""
         campo = self.wait.until(EC.visibility_of_element_located(self._USER_INPUT))
         campo.clear()
         campo.send_keys(usuario)
@@ -46,14 +45,15 @@ class LoginPage:
         return self
 
     def login_completo(self, usuario, clave):
-        """Método de conveniencia para hacer login completo (acción de negocio)."""
+        """Método de conveniencia para hacer login completo."""
         self.completar_usuario(usuario)
         self.completar_clave(clave)
+        time.sleep(1) 
         self.hacer_clic_login()
         return self
 
     def hay_error(self) -> bool:
-        """Verificar si hay un mensaje de error visible (para tests negativos)."""
+        """Verificar si hay un mensaje de error visible."""
         try:
             self.wait.until(EC.visibility_of_element_located(self._ERROR_MESSAGE))
             return True
@@ -65,51 +65,3 @@ class LoginPage:
         if self.hay_error():
             return self.driver.find_element(*self._ERROR_MESSAGE).text
         return ""
-=======
-import time
-
-class LoginPage:
-    
-    #URL
-    URL = "https://www.saucedemo.com/"
-
-    _USER_INPUT = (By.ID,"user-name")
-    _PASS_INPUT = (By.ID,"password")
-    _LOGIN_BUTTON = (By.ID, "login-button")
-
-
-    def __init__(self,driver):
-        self.driver = driver 
-        self.wait = WebDriverWait(driver,10)
-
-    def abrir_pagina(self):
-        self.driver.get(self.URL)
-        return self
-    
-    def completar_user(self,usuario):
-        input = self.wait.until(EC.visibility_of_element_located(self._USER_INPUT))
-        input.clear()
-        input.send_keys(usuario)
-        return self
-    
-    def completar_pass(self,password):
-        input = self.driver.find_element(*self._PASS_INPUT)
-        input.clear()
-        input.send_keys(password)
-        return self
-    
-    def hacer_click_button(self):
-        self.driver.find_element(*self._LOGIN_BUTTON).click()
-        return self
-
-    def login_completo(self,usuario,password):
-        self.completar_user(usuario)
-        self.completar_pass(password)
-        time.sleep(1)
-        self.hacer_click_button()
-        return self
-
-    def obtener_error(self):
-        div_error = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,".error-message-container h3")))
-        return div_error.text
->>>>>>> b441d3ee5de032a142c0872ea3cfca91f1bc5660

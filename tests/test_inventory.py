@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pytest
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
@@ -57,7 +56,7 @@ def test_agregar_producto_a_carrito(usuario_logueado: InventoryPage):
     assert contador == 1, f"El contador del carrito debería ser 1, es {contador}"
     
     logger.info("VERIFICACION EXITOSA: Contador de carrito OK (valor 1).")
-=======
+
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 import pytest
@@ -87,4 +86,4 @@ def test_inventory(login_in_driver,usuario,password):
         raise
     finally:
         driver.quit()
->>>>>>> b441d3ee5de032a142c0872ea3cfca91f1bc5660
+

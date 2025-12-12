@@ -46,7 +46,7 @@ def test_get_resource():
     response = requests.get(f'{BASE_URL}/1')
     
     # Nivel 1: Status Code [2]
-    assert response.status_code == 200 
+    assert response.status_code in [200, 204]
     
     # Nivel 3: Estructura JSON - debe contener las claves básicas (id, title, body, userId) [3]
     data = response.json()

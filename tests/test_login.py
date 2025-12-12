@@ -1,66 +1,42 @@
-<<<<<<< HEAD
 import pytest
 from pages.login_page import LoginPage
 from utils.datos import CASOS_LOGIN
 from utils.logger import logger
 
-# Pytest inyectará el fixture 'driver' automáticamente
-# y el decorador ejecutará la función una vez por cada tupla en CASOS_LOGIN
+# ----------------------------------------------------------------------
+# NOTA: Pytest inyectará el fixture 'driver' y la prueba se ejecutará 
+# una vez por cada tupla en CASOS_LOGIN
+# ----------------------------------------------------------------------
 
 @pytest.mark.ui
 @pytest.mark.parametrize("usuario, clave, debe_funcionar", CASOS_LOGIN)
 def test_login_ddt(driver, usuario, clave, debe_funcionar):
     """
-    Test parametrizado de login usando datos del archivo datos/login.csv.
-    Cubre escenarios de éxito (debe_funcionar=True) y fallo (debe_funcionar=False).
+    Test parametrizado de login usando Data Driven Testing (DDT) 
+    con datos de utils/datos.py.
     """
     
     # 1. Configurar y Abrir la página usando el Page Object
     login = LoginPage(driver)
-    login.abrir()
+    
+    # Usamos el método 'abrir' o 'abrir_pagina' si lo unificaste así
+    # Basado en tu código de LoginPage limpio: usa 'abrir()'
+    login.abrir() 
     
     logger.info('Iniciando login con usuario: %s', usuario)
 
     # 2. Realizar la acción de login
-    login.login_completo(usuario, clave)
+    # Nota: Asegúrate de que login_completo en LoginPage usa 'clave' o 'password' consistentemente.
+    login.login_completo(usuario, clave) 
 
     # 3. Lógica de validación condicional (Asserts)
     if debe_funcionar:
         # Si el login debe ser exitoso:
-        # Verificamos que la URL contenga el path del inventario (inventario.html)
         logger.info('Verificando login exitoso. URL esperada: inventory.html')
-        assert "inventory.html" in driver.current_url
+        assert "inventory.html" in driver.current_url, "Fallo: No se redirigió a la página de inventario."
     else:
         # Si el login debe fallar (usuario bloqueado o credenciales erróneas):
-        # Verificamos que no haya cambiado la URL y que el mensaje de error esté visible
         logger.info('Verificando login fallido. Error esperado.')
-        assert login.hay_error()
+        assert login.hay_error(), "Fallo: Se esperaba un error pero no se mostró el mensaje."
 
-    logger.info('Test finalizado para el usuario: %s', usuario)
-=======
-from selenium.webdriver.common.by import By
-from selenium import webdriver
-import pytest 
-
-from utils.datos import leer_csv_login
-from pages.login_page import LoginPage
-
-from utils.logger import logger
-
-
-@pytest.mark.parametrize("usuario,password,debe_funcionar",leer_csv_login("datos/data_login.csv"))
-def test_login_validation(login_in_driver,usuario,password,debe_funcionar):
-    logger.info("Completando con los datos de usuario")
-    driver = login_in_driver
-
-    if debe_funcionar == True:
-        logger.info("verficando redireccionamiento dentro de la pagina")
-        assert "/inventory.html" in driver.current_url, "No se redirgio al inventario"
-        logger.info("test de login completado")
-    elif debe_funcionar == False:
-        mensaje_error = LoginPage(driver).obtener_error()
-        assert "Epic sadface" in mensaje_error, "el mensaje de error no se esta mostrando"
-
-
-
->>>>>>> b441d3ee5de032a142c0872ea3cfca91f1bc5660
+    logger.info('Test de login finalizado para el usuario: %s', usuario)

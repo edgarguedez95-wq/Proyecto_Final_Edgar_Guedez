@@ -18,8 +18,7 @@ def driver():
     # Configuraciones del navegador
     chrome_options = Options()
     chrome_options.add_argument("--start-maximized") # Ventana maximizada
-    # Para GitHub Actions (CI), descomentar la siguiente línea:
-    # chrome_options.add_argument("--headless") 
+    # chrome_options.add_argument("--headless") # Descomentar para CI/CD 
     
     # Inicializar el driver
     service = Service()
@@ -39,7 +38,7 @@ def driver():
 @pytest.fixture
 def login_in_driver(driver, usuario, password):
     """Fixture que abre la página e inicia sesión para pruebas UI."""
-    LoginPage(driver).abrir_pagina().login_completo(usuario, password)
+    LoginPage(driver).abrir().login_completo(usuario, password)
     return driver
 
 # --- FIXTURES DE API ---
@@ -52,7 +51,6 @@ def url_base():
 @pytest.fixture
 def header_request():
     """Retorna el header de autenticación/API Key para las peticiones API."""
-    # Nota: Asegúrate de que la clave de tu header sea la que esperas (ej. "x-api-key")
     return {"X-Api-Key": "reqres-free-v1"}
 
 # --- HOOKS PARA REPORTES Y CAPTURAS DE PANTALLA ---
