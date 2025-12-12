@@ -1,0 +1,7 @@
+# Dependencias UI
+selenium
+pytest
+# Dependencia para Reportes
+pytest-html
+# Dependencia API
+requests
