@@ -1,0 +1,67 @@
+name: CI TalentoLab
+
+# Eventos: Dispara el pipeline cuando hay push o Pull Request a las ramas principales
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    # Utilizamos la máquina virtual Linux, rápida y compatible con Python/Selenium
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHON_VERSION: "3.12"
+      PIP_CACHE: ~/.cache/pip # Variable para gestionar la caché de dependencias
+
+    steps:
+      # 1. Checkout del código: Baja el repositorio al runner
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      # 2. Configuración de caché: Acelera la instalación de dependencias
+      - name: Cache dependencias
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PIP_CACHE }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+
+      # 3. Setup Python
+      - name: Instalar Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # 4. Instalar dependencias (Selenium, Pytest, Requests, Behave)
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 5. Instalar Chrome Headless (Necesario para que Selenium funcione en CI)
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      # 6. Ejecutar tests UI + API + BDD
+      - name: Run Pytest & Behave
+        run: |
+          # Pytest ejecuta tests UI (con captura de fallos) y API
+          pytest tests/ tests_api/ -v --html=reports/pytest_report.html --self-contained-html
+          # Behave genera reporte BDD (si implementaste la Clase 14)
+          behave -f json -o reports/behave.json -f pretty
+
+      # 7. Subir artefactos (Reportes HTML, requisito de entrega)
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report-final
+          path: reports/ # Subirá reportes HTML y screenshots de fallos
+
+      # 8. Subir Logs (Requisito de observabilidad)
+      - name: Upload Suite Log
+        uses: actions/upload-artifact@v4
+        with:
+          name: suite-log
+          path: logs/ # Contiene el archivo suite.log
